@@ -1,8 +1,8 @@
 version: 1.2
 workflows:
- - name: flu_wastewater_variant_calling
+ - name: freyja_other_pathogens
    subclass: WDL
-   primaryDescriptorPath: /wdls/main_variant_calling.wdl
- - name: flu_alignment
+   primaryDescriptorPath: /wdls/main_freyja_other_pathogens.wdl
+ - name: universal_primers_flu_alignment
    subclass: WDL
-   primaryDescriptorPath: /wdls/main_alignment.wdl
+   primaryDescriptorPath: /wdls/main_universal_primers_flu_alignment.wdl
