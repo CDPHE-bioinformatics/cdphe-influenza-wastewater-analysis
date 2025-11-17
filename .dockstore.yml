@@ -1,0 +1,8 @@
+version: 1.2
+workflows:
+ - name: flu_wastewater_variant_calling
+   subclass: WDL
+   primaryDescriptorPath: /wdls/main_variant_calling.wdl
+ - name: flu_alignment
+   subclass: WDL
+   primaryDescriptorPath: /wdls/main_alignment.wdl
