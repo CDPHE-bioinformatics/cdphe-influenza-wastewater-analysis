@@ -1,6 +1,6 @@
 version 1.0
 
-import "./tasks_univeral_primers_flu_alignment.wdl" as tasks
+import "./tasks_universal_primers_flu_alignment.wdl" as tasks
 
 workflow universal_primers_flu_alignment {
 
