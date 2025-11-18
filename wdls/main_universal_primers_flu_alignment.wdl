@@ -8,7 +8,7 @@ workflow universal_primers_flu_alignment {
         String sample_name
         String project_name
         String out_dir # base project path (don't include terra outputs)
-        # e.g. gs://..../flu/flu_0000_miseq/realingment/
+        # e.g. gs://..../flu/flu_0000_miseq/realingment
 
         String subtype # this will be the subdirectory name
 
@@ -36,7 +36,7 @@ workflow universal_primers_flu_alignment {
     String workflow_version = "v0_1_0"
 
     # transfer_path
-    String transfer_path = "~{out_dir}/~{workflow_version}/~{subtype}/"
+    String transfer_path = "~{out_dir}/~{workflow_version}/~{subtype}"
     # e.g. gs://...../flu/flu_0000_miseq/realingment/v0.0.0/{subtype}/
 
     call tasks.fastqc as fastqc_raw{
