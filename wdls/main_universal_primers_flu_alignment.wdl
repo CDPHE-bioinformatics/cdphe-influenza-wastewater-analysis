@@ -1,6 +1,6 @@
 version 1.0
 
-import "./tasks_alignment.wdl" as tasks
+import "./tasks_univeral_primers_flu_alignment.wdl" as tasks
 
 workflow universal_primers_flu_alignment {
 
@@ -113,6 +113,12 @@ workflow universal_primers_flu_alignment {
             bwa_version = align_bwa.bwa_version,
             ivar_version = call_consensus_ivar.ivar_version,
             samtools_version = align_bwa.samtools_version,
+            reference = reference,
+            fastqc_docker = fastqc_docker,
+            fastp_docker = fastp_docker,
+            ivar_docker = ivar_docker,
+            python_docker = python_docker,
+            utility_docker = utility_docker,
             docker = ubuntu_docker
     }
 

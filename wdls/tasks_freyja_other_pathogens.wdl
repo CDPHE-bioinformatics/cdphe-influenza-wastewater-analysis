@@ -273,20 +273,36 @@ task version_capture{
         String bwa_version
         String ivar_version
         String samtools_version
+        File reference
+        String fastqc_docker
+        String fastp_docker
+        String ivar_docker
+        String python_docker
+        String utility_docker
         String docker
     }
 
     String version_fn = "~{sample_name}_versions.txt"
 
     command <<<
-        echo "Sample Name: ~{sample_name}" > ~{version_fn}
+        echo "Analysis Date: $(date)" > ~{version_fn}
+        echo "Sample Name: ~{sample_name}" >> ~{version_fn}
         echo "Project Name: ~{project_name}" >> ~{version_fn}
-        echo "Workflow Version: ~{workflow_version}" >> ~{version_fn}
+        echo "universal_primers_flu_alignment Workflow Version: ~{workflow_version}" >> ~{version_fn}
         echo "FastQC Version: ~{fastqc_version}" >> ~{version_fn}
         echo "Fastp Version: ~{fastp_version}" >> ~{version_fn}
         echo "BWA Version: ~{bwa_version}" >> ~{version_fn}
         echo "iVar Version: ~{ivar_version}" >> ~{version_fn}
         echo "Samtools Version: ~{samtools_version}" >> ~{version_fn}
+        echo "Fastqc Docker: ~{docker}" >> ~{version_fn}
+        echo "Fastp Docker: ~{fastp_docker}" >> ~{version_fn}
+        echo "iVar Docker: ~{ivar_docker}" >> ~{version_fn}
+        echo "Python Docker: ~{python_docker}" >> ~{version_fn}
+        echo "Utility Docker: ~{utility_docker}" >> ~{version_fn}
+        echo "Ubuntu Docker: ~{docker}" >> ~{version_fn}
+        # pull out fasta header
+        FASTA_HEADER=$(head -n 1 ~{reference} | sed 's/^>//')
+        echo "Reference Sequence: $FASTA_HEADER" >> ~{version_fn}
 
     >>>
 

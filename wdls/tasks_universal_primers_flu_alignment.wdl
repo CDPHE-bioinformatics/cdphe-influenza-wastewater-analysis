@@ -83,15 +83,24 @@ task version_capture {
         String freyja_version
         String workflow_version
         String barcodes_version
+        String freyja_docker
+        String python_docker
+        String utility_docker
         String docker
     }
 
     command {
-        echo "Sample Name: ~{sample_name}" > ~{sample_name}_version.txt
+        echo "Analysis Date: $(date)" > ~{sample_name}_version.txt
+        echo "Sample Name: ~{sample_name}" >> ~{sample_name}_version.txt
         echo "Project Name: ~{project_name}" >> ~{sample_name}_version.txt
-        echo "Workflow Version: ~{workflow_version}" >> ~{sample_name}_version.txt
+        echo "freyja_other_pathogens Workflow Version: ~{workflow_version}" >> ~{sample_name}_version.txt
         echo "Freyja Version: ~{freyja_version}" >> ~{sample_name}_version.txt
         echo "Freyja Barcodes Version: ~{barcodes_version}" >> ~{sample_name}_version.txt
+        echo "Freyja Docker: ~{freyja_docker}" >> ~{sample_name}_version.txt
+        echo "Python Docker: ~{python_docker}" >> ~{sample_name}_version.txt
+        echo "Utility Docker: ~{utility_docker}" >> ~{sample_name}_version.txt
+        echo "Ubuntu Docker: ~{docker}" >> ~{sample_name}_version.txt
+
         
     }
 

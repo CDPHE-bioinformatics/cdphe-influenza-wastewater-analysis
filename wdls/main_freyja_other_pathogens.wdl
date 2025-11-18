@@ -1,5 +1,5 @@
 version 1.0
-import "./tasks_variant_calling.wdl" as tasks
+import "./tasks_freyja_other_pathogens.wdl" as tasks
 
 workflow freyja_other_pathogens {
 
@@ -64,6 +64,9 @@ workflow freyja_other_pathogens {
             freyja_version = freyja.freyja_version,
             workflow_version = workflow_version,
             barcodes_version = barcodes_version,
+            freyja_docker = freyja_docker,
+            python_docker = python_docker,
+            utility_docker = utility_docker,
             docker = ubuntu_docker
 
 
