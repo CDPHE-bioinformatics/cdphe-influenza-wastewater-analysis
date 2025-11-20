@@ -25,8 +25,10 @@ def calculate_percent_coverage(reference, consensus, sample_name):
 
     seq_record = SeqIO.read(consensus, "fasta")
     seq_length = len(seq_record.seq)
+    count_n = seq_record.seq.upper().count('N')
+    final_seq_length = seq_length - count_n
 
-    percent_coverage = round((seq_length / ref_length) * 100, 2)
+    percent_coverage = round((final_seq_length / ref_length) * 100, 2)
 
     df = pd.DataFrame()
     df['sample_name'] = [str(sample_name)]
