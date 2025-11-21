@@ -94,6 +94,7 @@ workflow universal_primers_flu_alignment {
         input:
             sample_name = sample_name,
             project_name = project_name,
+            subtype = subtype,
             consensus_fasta = call_consensus_ivar.consensus_fasta,
             reference = reference,
             fastqc_clean_summary = fastqc_clean.summary_metrics,

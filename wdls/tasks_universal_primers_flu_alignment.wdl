@@ -228,6 +228,7 @@ task summarize_results {
     input {
         String sample_name
         String project_name
+        String subtype
         File consensus_fasta
         File reference
         File fastqc_clean_summary
@@ -243,6 +244,7 @@ task summarize_results {
         python ~{summary_python_script} \
             --sample_name ~{sample_name} \
             --project_name ~{project_name} \
+            --subtype ~{subtype} \
             --consensus_fasta ~{consensus_fasta} \
             --reference ~{reference} \
             --fastqc_clean_summary ~{fastqc_clean_summary} \

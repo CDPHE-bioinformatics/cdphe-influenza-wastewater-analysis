@@ -11,6 +11,7 @@ def get_args():
     parser = argparse.ArgumentParser(description='Calculate alignment metrics and percent coverage.')
     parser.add_argument('--sample_name',  help='sample name')
     parser.add_argument('--project_name', help='Name of the project')
+    parser.add_argument('--subtype', help='Subtype information')
     parser.add_argument('--consensus_fasta', help='consensus FASTA file')
     parser.add_argument('--reference', help='Reference FASTA file')
     parser.add_argument('--out_fn', help = 'Out filename')
@@ -79,30 +80,31 @@ def main():
     alignment_metrics_df = read_alignment_metrics(args.samtools_coverages, args.sample_name)
     fastqc_summary_df = read_fastqc_summary(args.fastqc_clean_summary, args.fastqc_raw_summary, args.sample_name)
 
-    print('percent_coverage_df:')
-    print(percent_coverage_df)
-    print('-------------------')
+    # print('percent_coverage_df:')
+    # print(percent_coverage_df)
+    # print('-------------------')
 
-    print('alignment_metrics_df:')
-    print(alignment_metrics_df)
-    print('-------------------')
+    # print('alignment_metrics_df:')
+    # print(alignment_metrics_df)
+    # print('-------------------')
 
-    print('fastqc_summary_df:')
-    print(fastqc_summary_df)
-    print('-------------------')
+    # print('fastqc_summary_df:')
+    # print(fastqc_summary_df)
+    # print('-------------------')
 
     final_df = percent_coverage_df.merge(alignment_metrics_df, on='sample_name')
     final_df = final_df.merge(fastqc_summary_df, on='sample_name')
     
-    print('final_df before calculations:')
-    print(final_df)
-    print('-------------------')
+    # print('final_df before calculations:')
+    # print(final_df)
+    # print('-------------------')
 
     final_df['percent_reads_mapped'] = round((final_df['reads_mapped'] / final_df['clean_paired_reads']) * 100, 2)   
     final_df['project_name'] = args.project_name
+    final_df['subtype'] = args.subtype
 
     # order columns
-    column_order = ['sample_name','project_name', 'percent_coverage', 'mean_depth', 'reads_mapped', 'percent_reads_mapped', 'mean_baseq', 'mean_mapq'] + \
+    column_order = ['sample_name','project_name', 'subtype','percent_coverage', 'mean_depth', 'reads_mapped', 'percent_reads_mapped', 'mean_baseq', 'mean_mapq'] + \
                    [col for col in final_df.columns if col.startswith('clean_')] + \
                    [col for col in final_df.columns if col.startswith('raw_')]
     
