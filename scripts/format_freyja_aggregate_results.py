@@ -26,14 +26,14 @@ def main():
     
     # clean up aggregate file
     df = df.rename(columns = {'Unnamed: 0': 'file_name'})
-    df['sample_name'] = df['file_name'].str.split('.').str[0]
+    df['sample_name'] = df['file_name'].str.split('_variants').str[0]
 
     # reformat to long file format
     sample_name = df.sample_name[0]
     coverage = df.coverage[0]
     resid = df.resid[0]
-    lineages = df.lineages[0].split(',')
-    abundances = df.abundances[0].split(',')
+    lineages = df.lineages[0].split(' ')
+    abundances = df.abundances[0].split(' ')
     lineage_dict = dict(zip(lineages, abundances))
 
     columns = ['sample_name', 'lineage', 'abundance', 'coverage', 'resid']
